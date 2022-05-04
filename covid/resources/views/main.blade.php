@@ -35,7 +35,14 @@
     <script src="{{asset('js/dataTables.bootstrap5.min.js')}}"></script>
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Įmonės zona</a>
+        @if(Auth::user()->type == 'User')
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Kliento zona</a>
+        @elseif(Auth::user()->type == 'Company')
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Įmonės zona</a>
+        @else
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Admin zona</a>
+        @endif
+
 
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
@@ -65,7 +72,12 @@
                         @endif
 
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) == 'visitor' ? 'active' : '' }}" href="/visitor">Visitor</a>
+                            <a class="nav-link {{ Request::segment(1) == 'visitor' ? 'active' : '' }}" href="/visit">Vizitai</a>
+
+
+
+
+
                         </li>
 
                         <li class="nav-item">
@@ -93,8 +105,8 @@
                         <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
                             <div class="u-inner-container-layout u-sidenav-overflow">
                                 <div class="u-menu-close"></div>
-                                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Pagrindinis.html">Pagrindinis</a>
-                                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Apie-mus.html">Apie mus</a>
+                                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Pagrindinis.html">Apžvalga</a>
+                                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Apie-mus.html">Profilis</a>
                                     </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Prisijungti</a>
                                     </li></ul>
                             </div>

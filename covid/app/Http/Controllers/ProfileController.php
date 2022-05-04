@@ -23,8 +23,7 @@ class ProfileController extends Controller
     function edit_validation(Request $request)
     {
         $request->validate([
-            'email'     =>  'required|email',
-            'name'      =>  'required'
+            'phone'     =>  'required'
         ]);
 
         $data = $request->all();
@@ -32,22 +31,20 @@ class ProfileController extends Controller
         if(!empty($data['password']))
         {
             $form_data = array(
-                'name'      =>  $data['name'],
-                'email'     =>  $data['email'],
+                'phone'      =>  $data['phone'],
                 'password'  =>  Hash::make($data['password'])
             );
         }
         else
         {
             $form_data = array(
-                'name'      =>  $data['name'],
-                'email'     =>  $data['email']
+                'phone'      =>  $data['phone'],
             );
         }
 
         User::whereId(Auth::user()->id)->update($form_data);
 
-        return redirect('profile')->with('success', 'Profile Data Updated');
+        return redirect('profile')->with('success', 'Informacija atnaujinta');
 
     }
 

@@ -98,7 +98,7 @@ class CustomAuthController extends Controller
             'surname'      =>  $data['surname'],
             'personal_code'      =>  $data['personal_code'],
             'phone'      =>  $data['phone'],
-            'type' => 'Client'
+            'type' => 'User'
         ]);
 
         return redirect('registration-client')->with('success', 'Sėkmingai užsiregistravote');
