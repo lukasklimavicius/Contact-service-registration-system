@@ -5,7 +5,7 @@ use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubUserController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\VisitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +72,10 @@ Route::post('department/edit_validation', [DepartmentController::class, 'edit_va
 
 Route::get('department/delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
 
-Route::get('visitor', [VisitorController::class, 'index'])->name('visitor');
+Route::get('visit', [VisitController::class, 'index'])->name('visit');
 
-Route::get('visitor/fetchall', [VisitorController::class, 'fetch_all'])->name('visitor.fetchall');
+Route::post('visit/add', [VisitController::class, 'add_visit'])->name('visits.add_visit');
+
+Route::get('visit/add', [VisitController::class, 'add'])->name('visit_add');
+
+Route::get('visit/fetchall', [VisitController::class, 'fetch_all'])->name('visit.fetchall');

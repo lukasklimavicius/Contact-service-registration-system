@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+
+    @yield('head')
 </head>
 <body>
 
@@ -27,6 +29,7 @@
 
 
 
+
     <script src="{{asset('js/jquery.js')}}"></script>
     <script src="{{asset('js/nicepage.js')}}"></script>
 
@@ -35,8 +38,13 @@
     <script src="{{asset('js/dataTables.bootstrap5.min.js')}}"></script>
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Įmonės zona</a>
-
+        @if(Auth::user()->type == 'User')
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Kliento zona</a>
+            @elseif(Auth::user()->type == 'Company')
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Įmonės zona</a>
+        @else
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Admin zona</a>
+        @endif
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
                 <a class="nav-link px-3" href="#">Sveiki atvykę, {{ Auth::user()->email }}</a>
@@ -65,11 +73,11 @@
                         @endif
 
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::segment(1) == 'visitor' ? 'active' : '' }}" href="/visitor">Visitor</a>
+                            <a class="nav-link {{ Request::segment(1) == 'visitor' ? 'active' : '' }}" href="/visit">Vizitai</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                            <a class="nav-link" href="{{ route('logout') }}">Atsijungti</a>
                         </li>
 
                     </ul>
@@ -79,7 +87,7 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <!--<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">!-->
 
-                @yield('content')
+
                 <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
                             <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
                                 <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
@@ -103,7 +111,7 @@
                             </div>
                         </nav>
 
-
+                @yield('content')
 
                 <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-19a8"><div class="u-clearfix u-sheet u-sheet-1">
                         <p class="u-small-text u-text u-text-variant u-text-1"><b>© 2022 Kontaktinių paslaugų registravimosi sistema</b>

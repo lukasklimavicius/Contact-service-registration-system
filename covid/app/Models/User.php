@@ -27,7 +27,8 @@ class User extends Authenticatable
         'title',
         'city',
         'street',
-        'h_number'
+        'h_number',
+        'type'
     ];
 
     /**
