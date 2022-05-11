@@ -10,10 +10,10 @@ class Visit extends Model
     use HasFactory;
 
     protected $fillable = [
-                'visitor_id',
-                'time_from',
-                'time_to',
-                'visited_company',
-                'created_at'
+        'visitor_id',
+        'time_from',
+        'time_to',
+        'visited_company',
+        'created_at'
     ];
 }
